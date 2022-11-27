@@ -1,0 +1,159 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.1.43"
+        }
+      },
+      "appStackk": {
+        "id": "appStackk",
+        "path": "appStackk",
+        "children": {
+          "SevenLending_Data_retrieval_script": {
+            "id": "SevenLending_Data_retrieval_script",
+            "path": "appStackk/SevenLending_Data_retrieval_script",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "appStackk/SevenLending_Data_retrieval_script/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "appStackk/SevenLending_Data_retrieval_script/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.23.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.23.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "appStackk/SevenLending_Data_retrieval_script/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "appStackk/SevenLending_Data_retrieval_script/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.23.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "appStackk/SevenLending_Data_retrieval_script/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.23.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.23.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "appStackk/SevenLending_Data_retrieval_script/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": "cdk-hnb659fds-assets-412740716366-us-east-2",
+                      "s3Key": "74c261eb3f704dd4e5a4071bc32425fb6406b852bbe0c6e138682889a6ca92d2.zip"
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "SevenLendingDataretrievalscriptServiceRole65C4958E",
+                        "Arn"
+                      ]
+                    },
+                    "handler": "lambda_function.lambda_handler",
+                    "runtime": "python3.7"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.23.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.23.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "appStackk/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "appStackk/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.23.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.43"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.23.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.23.0"
+    }
+  }
+}

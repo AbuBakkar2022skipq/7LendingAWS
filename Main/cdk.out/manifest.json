@@ -1,0 +1,76 @@
+{
+  "version": "18.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "appStackk.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "appStackk.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "appStackk": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://412740716366/us-east-2",
+      "properties": {
+        "templateFile": "appStackk.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::412740716366:role/cdk-hnb659fds-deploy-role-412740716366-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::412740716366:role/cdk-hnb659fds-cfn-exec-role-412740716366-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-412740716366-us-east-2/fa8882b6239639a4879880556fa0f033d5b018ccaaac5ea2e60bf8abc99e9b4d.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "appStackk.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::412740716366:role/cdk-hnb659fds-lookup-role-412740716366-us-east-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "appStackk.assets"
+      ],
+      "metadata": {
+        "/appStackk/SevenLending_Data_retrieval_script/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SevenLendingDataretrievalscriptServiceRole65C4958E"
+          }
+        ],
+        "/appStackk/SevenLending_Data_retrieval_script/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SevenLendingDataretrievalscript599E9917"
+          }
+        ],
+        "/appStackk/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/appStackk/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/appStackk/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "appStackk"
+    }
+  }
+}

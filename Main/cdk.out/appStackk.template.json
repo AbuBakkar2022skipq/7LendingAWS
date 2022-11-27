@@ -1,0 +1,107 @@
+{
+ "Resources": {
+  "SevenLendingDataretrievalscriptServiceRole65C4958E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "appStackk/SevenLending_Data_retrieval_script/ServiceRole/Resource"
+   }
+  },
+  "SevenLendingDataretrievalscript599E9917": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-412740716366-us-east-2",
+     "S3Key": "74c261eb3f704dd4e5a4071bc32425fb6406b852bbe0c6e138682889a6ca92d2.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "SevenLendingDataretrievalscriptServiceRole65C4958E",
+      "Arn"
+     ]
+    },
+    "Handler": "lambda_function.lambda_handler",
+    "Runtime": "python3.7"
+   },
+   "DependsOn": [
+    "SevenLendingDataretrievalscriptServiceRole65C4958E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "appStackk/SevenLending_Data_retrieval_script/Resource",
+    "aws:asset:path": "asset.74c261eb3f704dd4e5a4071bc32425fb6406b852bbe0c6e138682889a6ca92d2",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWMQQ6CMBBFz8K+jEg3bsXEtcEDkKFUHIE2YaYxpuHuthhX78/7+VNDraEq8M2lGaZyph7iXdBMKqkuzrj0A0K8BmeEvFOXh/vnTREuEFs/26wzN8W6Q2YrDOeMdEMTzGSlQU71LtP/kdy4jyz7sJrU3D7y9O6g4QTHqngxUbkGJ7RYaH/8AkUXxJyrAAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "appStackk/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
